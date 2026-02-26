@@ -52,20 +52,44 @@
  */
 export function getItemNames(items) {
   // Your code here
+  if(!Array.isArray(items)) return [];
+
+  return items.map(i=>i.name)
 }
 
 export function getAffordableItems(items, maxPrice) {
   // Your code here
+  if(!Array.isArray(items)|| typeof maxPrice !== "number") return [];
+
+  return items.filter(i=>i.price<=maxPrice)
 }
 
 export function calculateTotal(items) {
   // Your code here
+  if(!Array.isArray(items)|| items.length===0) return 0;
+  // let price,qty;
+  let total = 0
+  return items.reduce((total,items)=> total+(items.price*items.qty),0)
 }
 
 export function sortByPrice(items, ascending) {
   // Your code here
+  if(!Array.isArray(items)) return [];
+
+  // const lowToHigh = ;
+  // const highToLow = ;
+
+  let a,b;
+  a=items.price;
+  b=items.price;
+  if(ascending === true) return [...items].sort((a,b)=>a.price-b.price);
+  else if(ascending === false) return [...items].sort((a,b)=>b.price-a.price);
+  else return [];
 }
 
 export function formatBill(items) {
   // Your code here
+  if(!Array.isArray(items) || items.length===0) return "";
+
+  return items.map(item=>`${item.name} x ${item.qty} = Rs.${item.qty*item.price}`).join("\n");
 }
